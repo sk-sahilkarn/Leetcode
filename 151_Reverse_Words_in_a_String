@@ -1,0 +1,70 @@
+char* reverseWords(char* s) {
+    int n = strlen(s);
+    int j =0, k=0;
+
+    struct word{
+        char l[n+1];
+    };
+    struct word w[n+1];
+    char* r;
+    r=(char*)malloc((n+1)*sizeof(char));
+     w[j].l[k]='\0';
+    for(int i=0; i<n; i++){
+       
+        if(s[i]!=' ' ){
+            w[j].l[k]=s[i];
+            k++;
+              w[j].l[k]='\0';
+        }
+        
+       else if (i > 0 && i < n-1 && s[i] == ' ' &&
+    (
+        ((s[i-1]!=' ' )||
+         s[i-1] == ' ') &&
+        (s[i+1]!=' ')
+    )
+) {
+    j++;
+    k = 0;
+}
+
+       else if (i > 0 && i < n - 1 && s[i] == ' ' &&
+    (
+        (
+            ((s[i-1]!=' '&&
+            ((s[i+1]!=' ')
+        ) ||
+        (
+            s[i-1] == ' ' &&
+            ((s[i+1]!=' '))
+        )
+    )
+)))) {
+    j++;
+    k = 0;
+}
+        else{
+
+        }
+    }
+    r[0] = '\0';
+
+while (j >= 0){
+     strcat(r,w[j].l);
+
+    if (j >0) {
+        strcat(r, " ");
+    }
+    j--;
+}
+
+int i=0;
+while(r[i]!='\0'){
+    i++;
+}
+if(i>0 && r[i-1]==' '){
+    r[i-1]='\0';
+}
+printf("%d", i);
+    
+return r;}
